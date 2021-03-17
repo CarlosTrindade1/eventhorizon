@@ -1,8 +1,8 @@
 <template>
   <div id="app">
       <Menu/>
-      <div style="grid-area: content;">Content</div>
-      <aside style="grid-area: aside;">Ranking</aside>
+      <Content/>
+      <Ranking/>
       <Footer/>
   </div>
 </template>
@@ -10,10 +10,12 @@
 <script>
 import Menu from './components/template/Menu'
 import Footer from './components/template/Footer'
+import Content from './components/template/Content'
+import Ranking from './components/template/Ranking'
 
 export default {
   name: 'App',
-  components: {Menu, Footer}
+  components: {Menu, Footer, Content, Ranking}
 }
 </script>
 
