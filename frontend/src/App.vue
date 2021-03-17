@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-      <h1>Hello world</h1>
+      <nav>Menu</nav>
+      <div>Content</div>
+      <aside>Ranking</aside>
+      <footer>Footer</footer>
   </div>
 </template>
 
@@ -27,5 +30,7 @@ export default {
 
       height: 100vh;
       display: grid;
+
+      
     }
 </style>
