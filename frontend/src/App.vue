@@ -3,16 +3,17 @@
       <Menu/>
       <div style="grid-area: content;">Content</div>
       <aside style="grid-area: aside;">Ranking</aside>
-      <footer style="grid-area: footer;">Footer</footer>
+      <Footer/>
   </div>
 </template>
 
 <script>
 import Menu from './components/template/Menu'
+import Footer from './components/template/Footer'
 
 export default {
   name: 'App',
-  components: {Menu}
+  components: {Menu, Footer}
 }
 </script>
 

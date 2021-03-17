@@ -1,64 +1,42 @@
 <template>
-    <div class="menu-learn">
-        <div class="menu-1">
-            <div class="item img">
-                <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
-            </div>
-            <div class="item link">
-                <i class="fa fa-leanpub" style="font-size: 1.3rem"></i>
-                <a href> APRENDER</a>
-            </div>
-        </div>
-    </div>
+    <header class="menu">
+        <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
+        <a href class="link"><i class="fa fa-leanpub mr-2"></i> APRENDER</a>
+        <UserDropdown/>
+    </header>
 </template>
 
 <script>
+import UserDropdown from './UserDropdown'
+
 export default {
-    name: 'Menu'
+    name: 'Menu',
+    components: {UserDropdown}
 }
 </script>
 
 <style>
-    .menu-learn {
-        background-color: #fff;
+    .menu {
         grid-area: menu;
-        border-bottom: 2px solid #ccc;
-        padding: 5px;
+        border-bottom: 2px solid #CCC;
 
         display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    .menu-learn .menu-1 {
-        height: 100%;
-        display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
-    .menu-learn .menu-1 .img {
+    .menu > img {
         height: 100%;
+        margin-left: 20px
     }
 
-    img {
-        height: 100%;
-    }
-
-    .item {
-        margin: 0px 20px;
-    }
-
-    .menu-learn .menu-1 .link a{
+    .menu .link{
         text-decoration: none;
-        font-size: 1rem;
-        font-weight: 600;
-        color: rgb(73, 73, 73);
+        color: rgb(82, 82, 82);
+        font-size: 1.2rem;
     }
-
-    .menu-learn .menu-1 .link a:hover{
+    .menu .link:hover{
         text-decoration: none;
-        font-size: 1rem;
-        font-weight: 600;
         color: #000;
     }
 </style>
