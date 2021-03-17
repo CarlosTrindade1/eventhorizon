@@ -1,7 +1,7 @@
 <template>
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
-        <a href class="link"><i class="fa fa-leanpub mr-2"></i> APRENDER</a>
+        <router-link to="/learn" class="link"><i class="fa fa-leanpub mr-2"></i> APRENDER</router-link>
         <UserDropdown/>
     </header>
 </template>
