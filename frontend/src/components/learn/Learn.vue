@@ -8,6 +8,8 @@
 
 <script>
 import Module from './Module'
+import {baseApiUrl} from '../../global'
+import axios from 'axios'
 
 export default {
     name: 'Learn',
@@ -19,8 +21,12 @@ export default {
     },
     methods: {
         getModules(){
-            // Codificar
-            console.log('Buscando os módulos...')
+            const url = `${baseApiUrl}/modules`
+
+            axios.get(url).then(resp => {
+                const modules = resp.data
+                console.log(modules)
+            })
         }
     },
     mounted(){

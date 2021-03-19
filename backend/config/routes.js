@@ -1,7 +1,11 @@
 module.exports = app => {
-    app.get('/', (req, resp) => {
-        resp.send(`
-            <h1>Hello world!</h1>
-        `)
-    })
+    app.post('/signup', app.api.user.save)
+    app.post('/signin', app.api.auth.signin)
+    app.post('/validateToken', app.api.auth.validateToken)
+
+    app.route('/modules')
+        .get(app.api.module.getModules)
+
+    app.route('/chapters')
+        .get(app.api.chapter.getChapters)
 }
