@@ -1,7 +1,9 @@
 <template>
     <div class="learn">
-        <div class="grid-learn">
-            <Module/>
+        <div class="grid-learn" >
+            <div v-for="module in modulesWithChapters" :key="module.id">
+                <Module :module="module"/>
+            </div>
         </div>
     </div>
 </template>
@@ -16,21 +18,17 @@ export default {
     components: {Module},
     data: function(){
         return {
-            modules: []
+            modulesWithChapters: []
         }
     },
     methods: {
-        getModules(){
-            const url = `${baseApiUrl}/modules`
-
-            axios.get(url).then(resp => {
-                const modules = resp.data
-                console.log(modules)
-            })
+        getModulesWithChapters(){
+            const url = `${baseApiUrl}/modulesWithChapters`
+            axios.get(url).then(resp => this.modulesWithChapters = resp.data)
         }
     },
     mounted(){
-        this.getModules()
+        this.getModulesWithChapters()
     }
 }
 </script>

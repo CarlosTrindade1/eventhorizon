@@ -6,6 +6,9 @@ module.exports = app => {
     app.route('/modules')
         .get(app.api.module.getModules)
 
+    app.route('/modulesWithChapters')
+        .get(app.api.module.getModulesWithChapters)
+
     app.route('/chapters')
         .get(app.api.chapter.getChapters)
 }

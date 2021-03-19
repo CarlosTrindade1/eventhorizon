@@ -1,11 +1,12 @@
 <template>
     <div class="module">
         <hr>
-        <h1>Cinemática</h1>
+        <h1>{{module.name}}</h1>
+        <p>{{module.description}}</p>
         <div class="module-grid">
-            <Chapter/>
-            <Chapter/>
-            <Chapter/>
+            <div :v-for="chapter in module.chapters" :key="chapter.id">
+                <Chapter :chapter="chapter"/>
+            </div>
         </div>
         <hr>
     </div>
@@ -16,7 +17,8 @@ import Chapter from './Chapter'
 
 export default {
     name: 'Module',
-    components: {Chapter}
+    components: {Chapter},
+    props: ['module']
 }
 </script>
 
