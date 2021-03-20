@@ -2,9 +2,8 @@
     <div class="module">
         <hr>
         <h1>{{module.name}}</h1>
-        <p>{{module.description}}</p>
         <div class="module-grid">
-            <div :v-for="chapter in module.chapters" :key="chapter.id">
+            <div v-for="chapter in chapters" :key="chapter.id">
                 <Chapter :chapter="chapter"/>
             </div>
         </div>
@@ -18,7 +17,20 @@ import Chapter from './Chapter'
 export default {
     name: 'Module',
     components: {Chapter},
-    props: ['module']
+    props: ['module'],
+    data: function(){
+        return {
+            chapters: []
+        }
+    },
+    methods: {
+        getChapters(){
+            this.chapters = this.module.chapters
+        }
+    },
+    mounted(){
+        this.getChapters()
+    }
 }
 </script>
 
