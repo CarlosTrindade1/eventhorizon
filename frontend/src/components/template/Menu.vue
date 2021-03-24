@@ -1,8 +1,8 @@
 <template>
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
-        <router-link to="/learn" class="link"><i class="fa fa-leanpub mr-2"></i> APRENDER</router-link>
-        <UserDropdown/>
+        <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2"></i> APRENDER</router-link>
+        <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>
 
@@ -11,7 +11,11 @@ import UserDropdown from './UserDropdown'
 
 export default {
     name: 'Menu',
-    components: {UserDropdown}
+    components: {UserDropdown},
+    props: {
+        hideMenu: Boolean,
+        hideUserDropdown: Boolean
+    }
 }
 </script>
 

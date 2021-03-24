@@ -1,12 +1,15 @@
 <template>
-    <div class="ranking">
+    <div class="ranking" v-if="!hideRanking">
         Ranking
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Ranking'
+    name: 'Ranking',
+    props: {
+        hideRanking: Boolean
+    }
 }
 </script>
 

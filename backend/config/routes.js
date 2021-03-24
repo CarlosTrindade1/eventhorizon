@@ -11,4 +11,10 @@ module.exports = app => {
 
     app.route('/chapters')
         .get(app.api.chapter.getChapters)
+
+    app.route('/chapters/:id/questions')
+        .get(app.api.question.getQuestionsByChapter)
+
+    app.route('/questions')
+        .post(app.api.question.save)
 }

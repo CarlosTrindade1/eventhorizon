@@ -10,7 +10,10 @@
                         
             <p>{{chapter.description}}</p>
 
-            <b-button href variant="primary">Button</b-button>
+            <div class="chapter-button">
+                <b-button href="https://www.youtube.com/watch?v=3VLPyOLC1nc&list=PLPz6TqSYQzDYuQ3WqF5plmN0rycwcYULm&index=1" target="_blank" variant="primary">Conteúdo</b-button>
+                <b-button @click="question" variant="success">Começar</b-button>
+            </div>
         </b-card>
     </div>
 </template>
@@ -18,7 +21,15 @@
 <script>
 export default {
     name: 'Chapter',
-    props: ['chapter']
+    props: ['chapter'],
+    methods: {
+        question(){
+            this.$router.push({
+                name: 'questions',
+                params: {id: this.chapter.id}
+            })
+        }
+    }
 }
 </script>
 
@@ -26,5 +37,12 @@ export default {
     .chapter {
         margin: 0px 10px;
         margin-bottom: 20px;
+    }
+
+    .chapter-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
     }
 </style>

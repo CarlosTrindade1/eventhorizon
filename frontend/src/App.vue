@@ -1,21 +1,25 @@
 <template>
-  <div id="app">
-      <Menu/>
-      <Content/>
-      <Ranking/>
-      <Footer/>
-  </div>
+		<div id="app" :class="{'hide-ranking': !user}">
+			<Menu :hideUserDropdown="!user" :hideMenu="!user"/>
+			<Content/>
+			<Ranking :hideRanking="!user"/>
+			<Footer/>
+		</div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import Menu from './components/template/Menu'
 import Footer from './components/template/Footer'
 import Content from './components/template/Content'
 import Ranking from './components/template/Ranking'
 
+
+
 export default {
-  name: 'App',
-  components: {Menu, Footer, Content, Ranking}
+	name: 'App',
+	components: {Menu, Footer, Content, Ranking},
+	computed: mapState(['user'])
 }
 </script>
 
@@ -41,6 +45,13 @@ export default {
         grid-template-areas:
             'menu menu'
             'content aside'
-            'footer footer'
-      }
+            'footer footer';
+    }
+
+    #app.hide-ranking {
+		grid-template-areas:
+			'menu menu'
+			'content content'
+			'footer footer';
+    }
 </style>
