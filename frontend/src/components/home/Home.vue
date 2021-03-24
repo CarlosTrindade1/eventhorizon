@@ -1,10 +1,15 @@
 <template>
-    <div class="home">Oi</div>
+    <div class="home">
+        <Auth/>
+    </div>
 </template>
 
 <script>
+import Auth from '../auth/Auth'
+
 export default {
-    name: 'Home'
+    name: 'Home',
+    components: {Auth}
 }
 </script>
 

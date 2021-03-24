@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -12,6 +12,12 @@ export default new Vuex.Store({
     mutations: {
         setUser(state, user) {
             state.user = user
+
+            if (user){
+                axios.defaults.headers.common['Authorization'] = `bearer ${user.token}`
+            } else {
+                delete axios.defaults.headers.common['Authorization']
+            }
         }
     }
 })
