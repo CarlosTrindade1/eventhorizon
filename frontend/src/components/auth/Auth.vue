@@ -26,7 +26,7 @@
 
 <script>
 import axios from 'axios'
-import {baseApiUrl} from '../../global'
+import {baseApiUrl, userKey} from '../../global'
 import {mapState} from 'vuex'
 
 export default {
@@ -44,11 +44,13 @@ export default {
             axios.post(url, this.user1)
                 .then(resp => {
                     this.$store.commit('setUser', resp.data)
-                    this.$router.push({path: '/learn'})
+                    localStorage.setItem(userKey, JSON.stringify(resp.data))
                     axios.get(`${baseApiUrl}/user/${resp.data.id}/stats`).then(resp => {
                         this.$store.commit('setUserStats', resp.data)
                     })
+                    this.$router.push({path: '/learn'})
                 })
+                //.catch(err => console.log(err))
         },
         signup(){
             const url = `${baseApiUrl}/signup`

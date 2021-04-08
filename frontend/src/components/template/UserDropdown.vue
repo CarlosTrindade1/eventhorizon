@@ -3,13 +3,13 @@
         <div class="user-button">
             <span>{{user.name}}</span>
             <div class="user-dropdown-img">
-                <Gravatar email="carlos@carlos.com" alt="User"/>
+                <Gravatar :email="this.user.email" alt="User"/>
             </div>
             <i class="fa fa-angle-down"></i>
         </div>
         <div class="user-dropdown-content">
             <a href><i class="fa fa-cog"></i> Configuração</a>
-            <a href><i class="fa fa-sign-out"></i> Sair</a>
+            <a @click.prevent="logout" href><i class="fa fa-sign-out"></i> Sair</a>
         </div>
     </div>
 </template>
@@ -17,11 +17,19 @@
 <script>
 import Gravatar from 'vue-gravatar'
 import {mapState} from 'vuex'
+import {userKey} from '../../global'
 
 export default {
     name: 'UserDropdown',
     components: {Gravatar},
-    computed: mapState(['user'])
+    computed: mapState(['user']),
+    methods: {
+        logout(){
+            localStorage.removeItem(userKey)
+            this.$store.commit('setUser', null)
+            this.$router.push({name: 'home'})
+        }
+    }
 }
 </script>
 

@@ -14,12 +14,48 @@ import Footer from './components/template/Footer'
 import Content from './components/template/Content'
 import Ranking from './components/template/Ranking'
 
-
+import axios from 'axios'
+import {baseApiUrl, userKey} from './global'
 
 export default {
 	name: 'App',
 	components: {Menu, Footer, Content, Ranking},
-	computed: mapState(['user'])
+	computed: mapState(['user']),
+	data: function(){
+		return {
+			validatingToken: true
+		}
+	},
+	methods: {
+		async validateToken(){
+			this.validatingToken = true
+
+			const json = localStorage.getItem(userKey)
+			const userData = JSON.parse(json)
+			this.$store.commit('setUser', null)
+
+			if (!userData){
+				this.validatingToken = false
+				this.$router.push({name: 'home'})
+				return
+			}
+
+			const resp = await axios.post(`${baseApiUrl}/validateToken`, userData)
+
+			if (resp.data) {
+				this.$store.commit('setUser', userData)
+
+			} else {
+				localStorage.removeItem(userKey)
+				this.$router.push({name: 'home'})
+			}
+
+			this.validatingToken = false
+		}
+	},
+	created(){
+		this.validateToken()
+	}
 }
 </script>
 
