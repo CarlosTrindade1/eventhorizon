@@ -17,4 +17,7 @@ module.exports = app => {
 
     app.route('/questions')
         .post(app.api.question.save)
+
+    app.route('/user/:id/stats')
+        .get(app.api.user.getStats)
 }

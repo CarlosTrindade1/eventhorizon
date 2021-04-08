@@ -7,6 +7,13 @@ exports.up = function(knex) {
         table.string('password').notNull()
         table.string('imageUrl')
         table.boolean('admin').notNull()
+        table.integer('dailyTarget')
+        table.integer('valueDailyTarget')
+        table.integer('weekExp')
+        table.integer('monthExp')
+        table.integer('yearExp')
+        table.integer('totalExp')
+        table.integer('ranking')
     })
 };
 

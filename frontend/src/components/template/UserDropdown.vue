@@ -1,7 +1,7 @@
 <template>
     <div class="user-dropdown">
         <div class="user-button">
-            <span>Carlos Trindade</span>
+            <span>{{user.name}}</span>
             <div class="user-dropdown-img">
                 <Gravatar email="carlos@carlos.com" alt="User"/>
             </div>
@@ -16,10 +16,12 @@
 
 <script>
 import Gravatar from 'vue-gravatar'
+import {mapState} from 'vuex'
 
 export default {
     name: 'UserDropdown',
-    components: {Gravatar}
+    components: {Gravatar},
+    computed: mapState(['user'])
 }
 </script>
 

@@ -50,5 +50,16 @@ module.exports = app => {
         }
     }
 
-    return {save}
+    const getStats = (req, resp) => {
+        const userId = req.params.id
+
+        app.db('users')
+            .select('dailyTarget', 'weekExp', 'monthExp', 'yearExp', 'totalExp', 'ranking')
+            .where({id: userId})
+            .first()
+            .then(stats => resp.json(stats))
+            .catch(err => resp.status(500).send(err))
+    }
+
+    return {save, getStats}
 }

@@ -18,6 +18,9 @@ export default new Vuex.Store({
             } else {
                 delete axios.defaults.headers.common['Authorization']
             }
+        },
+        setUserStats(state, userStats){
+            state.userStats = userStats
         }
     }
 })

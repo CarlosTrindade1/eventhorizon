@@ -1,15 +1,25 @@
 <template>
     <div class="auth">
         <div class="auth-container">
-            <img src="../../assets/logo-nome_pretoebranco.png" alt="Logomarca">
-            <h1>Login</h1>
+            <img src="../../assets/logo-pretoebranco-3.0.png" alt="Logomarca">
+            <h1 v-if="showSignup">Registrar-se</h1>
+            <h1 v-else>Login</h1>
             <div class="form">
+                <p v-if="showSignup">Nome:</p>
+                <input v-if="showSignup" type="text" placeholder="Digite o seu nome..." v-model="user1.name">
                 <p>E-mail:</p>
-                <input type="email" placeholder="Digite o seu e-mail..." v-model="user.email">
+                <input type="email" placeholder="Digite o seu e-mail..." v-model="user1.email">
                 <p>Senha:</p>
-                <input type="password" placeholder="Digite a sua senha..." v-model="user.password">
+                <input type="password" placeholder="Digite a sua senha..." v-model="user1.password">
+                <p v-if="showSignup">Confirme a senha:</p>
+                <input v-if="showSignup" type="password" placeholder="Confirme a sua senha..." v-model="user1.confirmPassword">
             </div>
-            <a href @click.prevent="signin" class="bg-primary">Login</a>
+            <a href v-if="showSignup" @click.prevent="signup" class="bg-primary">Registrar</a>
+            <a href v-else @click.prevent="signin" class="bg-primary">Entrar</a>
+            <a href @click.prevent="showSignup = !showSignup">
+                <span v-if="showSignup" style="color: #000">Já tem cadastro? Acesse o login!</span>
+                <span v-else style="color: #000">Não tem cadastro? Registre-se aqui</span>
+            </a>
         </div>
     </div>
 </template>
@@ -17,22 +27,38 @@
 <script>
 import axios from 'axios'
 import {baseApiUrl} from '../../global'
+import {mapState} from 'vuex'
 
 export default {
     name: 'Auth',
     data: function(){
         return {
-            user: {}
+            user1: {},
+            showSignup: false,
         }
     },
+    computed: mapState(['user']),
     methods: {
         signin(){
             const url = `${baseApiUrl}/signin`
-            axios.post(url, this.user)
+            axios.post(url, this.user1)
                 .then(resp => {
                     this.$store.commit('setUser', resp.data)
                     this.$router.push({path: '/learn'})
+                    axios.get(`${baseApiUrl}/user/${resp.data.id}/stats`).then(resp => {
+                        this.$store.commit('setUserStats', resp.data)
+                    })
                 })
+        },
+        signup(){
+            const url = `${baseApiUrl}/signup`
+            this.user1 = {...this.user1, admin: false}
+            axios.post(url, this.user1)
+                .then(() => {
+                    this.user1 = {}
+                    this.showSignup = false
+                })
+                .catch()
         }
     }
 }
@@ -78,7 +104,8 @@ export default {
     }
 
     .auth img {
-        height: 100px;
+        height: 50px;
+        margin-bottom: 10px;
     }
 
     .form {
