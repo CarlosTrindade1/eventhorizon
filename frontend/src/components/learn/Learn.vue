@@ -12,10 +12,12 @@
 import Module from './Module'
 import {baseApiUrl} from '../../global'
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
     name: 'Learn',
     components: {Module},
+    computed: mapState(['userStats']),
     data: function(){
         return {
             modulesWithChapters: []

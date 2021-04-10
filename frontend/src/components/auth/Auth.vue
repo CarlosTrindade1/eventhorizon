@@ -26,7 +26,7 @@
 
 <script>
 import axios from 'axios'
-import {baseApiUrl, userKey} from '../../global'
+import {baseApiUrl, showError, userKey} from '../../global'
 import {mapState} from 'vuex'
 
 export default {
@@ -50,7 +50,7 @@ export default {
                     })
                     this.$router.push({path: '/learn'})
                 })
-                //.catch(err => console.log(err))
+                .catch(showError)
         },
         signup(){
             const url = `${baseApiUrl}/signup`
@@ -60,7 +60,7 @@ export default {
                     this.user1 = {}
                     this.showSignup = false
                 })
-                .catch()
+                .catch(showError)
         }
     }
 }

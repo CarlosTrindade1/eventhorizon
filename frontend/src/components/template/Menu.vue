@@ -1,7 +1,7 @@
 <template>
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
-        <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2"></i> APRENDER</router-link>
+        <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2 size"></i> APRENDER</router-link>
         <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>
@@ -22,7 +22,7 @@ export default {
 <style>
     .menu {
         grid-area: menu;
-        border-bottom: 2px solid #CCC;
+        border-bottom: 2px solid rgba(160, 160, 160, 0.253);
 
         display: flex;
         justify-content: space-between;
@@ -36,11 +36,16 @@ export default {
 
     .menu .link{
         text-decoration: none;
-        color: rgb(82, 82, 82);
-        font-size: 1.2rem;
+        color: #007BFF;
+        font-size: 1.1rem;
+        font-weight: 600;
     }
     .menu .link:hover{
         text-decoration: none;
-        color: #000;
+        color: #0069D9;
+    }
+
+    .size {
+        font-size: 1.8rem;
     }
 </style>

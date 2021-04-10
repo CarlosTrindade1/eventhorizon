@@ -1,7 +1,7 @@
 <template>
     <div class="chapter">
         <b-card :title="chapter.name" 
-            img-src="https://5287aa00874a313e299d-1850966fc307ff23e1e789aeafd2476b.ssl.cf5.rackcdn.com/PostImagem/31119/fotos-do-buraco-negro_o1dqp09b1m10ss3eib9n3r1co6e.jpg"
+            img-src="https://conteudos.xpi.com.br/wp-content/uploads/2020/10/fundo-geometrico-de-tecnologia_29971-339.jpg"
             img-alt="Image"
             img-top
             tag="article"
@@ -37,6 +37,15 @@ export default {
     .chapter {
         margin: 0px 10px;
         margin-bottom: 20px;
+
+        box-shadow: 0 10px 10px rgb(126 126 126 / 30%);
+        transition: all .3s ease;
+    }
+
+    .chapter:hover {
+        margin-top: 5px;
+        box-shadow: none;
+        cursor: pointer;
     }
 
     .chapter-button {

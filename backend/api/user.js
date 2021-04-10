@@ -9,7 +9,17 @@ module.exports = app => {
     }
 
     const save = async (req, resp) => {
-        const user = {...req.body}
+        const userStats = {
+            dailyTarget: 50,
+            valueDailyTarget: 0,
+            weekExp: 0,
+            monthExp: 0,
+            yearExp: 0,
+            totalExp: 0,
+            ranking: 0
+        }
+
+        const user = {...req.body, ...userStats}
         
         if (req.params.id) user.id = req.params.id
 
@@ -54,7 +64,7 @@ module.exports = app => {
         const userId = req.params.id
 
         app.db('users')
-            .select('dailyTarget', 'weekExp', 'monthExp', 'yearExp', 'totalExp', 'ranking')
+            .select('dailyTarget', 'valueDailyTarget','weekExp', 'monthExp', 'yearExp', 'totalExp', 'ranking')
             .where({id: userId})
             .first()
             .then(stats => resp.json(stats))
