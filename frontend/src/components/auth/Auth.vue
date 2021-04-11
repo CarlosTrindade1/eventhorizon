@@ -78,11 +78,13 @@ export default {
         justify-content: center;
         align-items: center;
 
-        border: 1px solid #000;
-        border-radius: 10px;
+        border: 1px solid #fff;
+        border-radius: 15px;
         width: 500px;
 
         padding: 20px;
+
+        background-color: #fff;
     }
 
     .auth-container h1 {

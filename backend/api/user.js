@@ -71,5 +71,17 @@ module.exports = app => {
             .catch(err => resp.status(500).send(err))
     }
 
-    return {save, getStats}
+    const updateStats = (req, resp) => {
+        const stats = {...req.body}
+        const userId = req.params.id
+
+
+        app.db('users')
+            .update({...stats})
+            .where({id: userId})
+            .then(_ => resp.status(204).send())
+            .catch(err => resp.status(500).send(err))
+    }
+
+    return {save, getStats, updateStats}
 }

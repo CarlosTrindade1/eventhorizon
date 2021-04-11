@@ -2,16 +2,20 @@
     <div class="daily-target">
         <h1>Progresso em XP</h1>
         <div class="daily-target-flex">
-            <div class="daily-target-icon mr-3">
+            <div v-if="this.userStats.valueDailyTarget >= 50" class="daily-target-icon-gold mr-3">
+                <i class="fa fa-trophy"></i>
+            </div>
+            <div v-else class="daily-target-icon-silver mr-3">
                 <i class="fa fa-trophy"></i>
             </div>
             <div style="flex-grow: 2;" class="ml-2">
                 <div><p>Meta diária</p></div>
                 <div class="progress-flex">
                     <div class="progress mb-3">
-                        <div class="progress-bar bg-primary" role="progressbar" v-bind:style="{width: this.userStats.valueDailyTarget * 2 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div v-bind:class="{'progress-bar': true, 'bg-primary': this.userStats.valueDailyTarget < 50, 'bg-warning': this.userStats.valueDailyTarget >= 50}" role="progressbar" v-bind:style="{width: this.userStats.valueDailyTarget * 2 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p>{{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} XP</p>
+                    <p v-if="this.userStats.valueDailyTarget <= 50">{{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} XP</p>
+                    <p v-else>50/50 XP</p>
                 </div>
             </div> 
         </div>
@@ -48,8 +52,17 @@ export default {
         align-items: center;
     }
 
-    .daily-target-icon {
+    .daily-target-icon-silver {
+        font-size: 3.5rem;
+        color: rgb(134, 134, 134);
+    }
+
+    .daily-target-icon-gold {
         font-size: 3.5rem;
         color: rgb(247, 203, 10);
     }
+
+    /* .target-meta {
+        color: rgb(247, 203, 10);
+    } */
 </style>

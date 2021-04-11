@@ -1,5 +1,5 @@
 <template>
-    <div class="question">
+    <div class="question" v-if="questions[index] !== undefined">
         <div class="progress mb-3">
             <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: progress+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
@@ -65,7 +65,7 @@ export default {
             correct: false
         }
     },
-    computed: mapState(['userStats']),
+    computed: mapState(['userStats', 'user']),
     methods: {
         getQuestions(){
             const url = `${baseApiUrl}/chapters/${this.categoryId}/questions`
@@ -79,7 +79,6 @@ export default {
                 this.correct = true
                 this.progress = this.progress + 100 / this.questions.length
                 showSuccess('Reposta correta!')
-                this.$store.commit('incrementValueDailyTarget')
 
             } else {
                 this.addToEnd(this.questions[this.index], this.index)
@@ -91,6 +90,16 @@ export default {
                 this.index++
                 this.showResponse = true
                 this.correct = false
+            } else {
+                this.$store.commit('incrementStats', 10)
+
+                const url = `${baseApiUrl}/user/${this.user.id}/stats`
+                
+                axios.post(url, this.userStats)
+                    .then(resp => showSuccess(resp))
+                    .catch(showError)
+
+                this.$router.push({path: '/learn'})
             }
         },
         addToEnd(question, index){
@@ -110,6 +119,8 @@ export default {
     .question {
         display: flex;
         flex-direction: column;
+
+        padding: 20px;
     }
 
     .question-content {

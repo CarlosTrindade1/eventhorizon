@@ -25,8 +25,12 @@ export default new Vuex.Store({
         setUserStats(state, userStats){
             state.userStats = {...userStats}
         },
-        incrementValueDailyTarget(state){
-            state.userStats.valueDailyTarget += 5
+        incrementStats(state, value){
+            state.userStats.valueDailyTarget += value
+            state.userStats.weekExp += value
+            state.userStats.monthExp += value
+            state.userStats.yearExp += value
+            state.userStats.totalExp += value
         }
     },
     plugins: [
