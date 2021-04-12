@@ -1,15 +1,17 @@
 <template>
     <div class="ranking" v-if="!hideRanking">
-        <DailyTarget/>
+        <DailyTarget class="mb-3"/>
+        <Classification class="mt-5"/>
     </div>
 </template>
 
 <script>
 import DailyTarget from '../learn/DailyTarget'
+import Classification from '../learn/Classification'
 
 export default {
     name: 'Ranking',
-    components: {DailyTarget},
+    components: {DailyTarget, Classification},
     props: {
         hideRanking: Boolean
     }
@@ -19,7 +21,6 @@ export default {
 <style>
     .ranking {
         grid-area: aside;
-        /* background-color: #efefef; */
         padding: 20px;
     }
 </style>

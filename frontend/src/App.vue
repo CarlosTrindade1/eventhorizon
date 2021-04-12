@@ -62,12 +62,25 @@ export default {
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&display=swap');
     * {
-      font-family: 'Asap', sans-serif;
+      font-family: 'Asap', sans-serif; 
     }
 
     body {
         margin: 0;
     }
+
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		border-radius: 10px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #007BFF;
+		border-radius: 10px;
+	}
 
     #app {
         -webkit-font-smoothing: antialiased;

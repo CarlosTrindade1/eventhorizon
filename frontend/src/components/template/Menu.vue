@@ -2,6 +2,7 @@
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
         <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2 size"></i> APRENDER</router-link>
+        <router-link to="" class="link" style="color: #218838" v-if="!hideMenu"><i class="fa fa-newspaper-o mr-2 size"></i> RANKING</router-link>
         <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>

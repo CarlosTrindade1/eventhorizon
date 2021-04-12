@@ -12,9 +12,15 @@
                 <div><p>Meta diária</p></div>
                 <div class="progress-flex">
                     <div class="progress mb-3">
-                        <div v-bind:class="{'progress-bar': true, 'bg-primary': this.userStats.valueDailyTarget < 50, 'bg-warning': this.userStats.valueDailyTarget >= 50}" role="progressbar" v-bind:style="{width: this.userStats.valueDailyTarget * 2 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div v-bind:class="{'progress-bar': true, 
+                        'bg-primary': this.userStats.valueDailyTarget < 50,
+                        'bg-warning': this.userStats.valueDailyTarget >= 50}" 
+                        role="progressbar" v-bind:style="{width: this.userStats.valueDailyTarget * 2 + '%'}" 
+                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p v-if="this.userStats.valueDailyTarget <= 50">{{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} XP</p>
+                    <p v-if="this.userStats.valueDailyTarget <= 50">
+                        {{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} XP
+                    </p>
                     <p v-else>50/50 XP</p>
                 </div>
             </div> 
@@ -61,8 +67,4 @@ export default {
         font-size: 3.5rem;
         color: rgb(247, 203, 10);
     }
-
-    /* .target-meta {
-        color: rgb(247, 203, 10);
-    } */
 </style>
