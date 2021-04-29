@@ -9,11 +9,11 @@ module.exports = app => {
     }
 
     const getQuestionsByChapter = (req, resp) => {
-        // if (!req.params.id)
         const id = req.params.id
+        const level = req.query.level
         
         app.db('questions')
-            .where({chapterId: id})
+            .where({chapterId: id, level: level})
             .then(questions => {
                 questionsSolved = questions.map(question => {
                     question.content = question.content.toString()

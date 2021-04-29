@@ -19,9 +19,10 @@
                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <p v-if="this.userStats.valueDailyTarget <= 50">
-                        {{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} XP
+                        {{this.userStats.valueDailyTarget}}/{{this.userStats.dailyTarget}} 
+                        <span style="font-style: italic">bósons</span>
                     </p>
-                    <p v-else>50/50 XP</p>
+                    <p v-else>50/50 bósons</p>
                 </div>
             </div> 
         </div>

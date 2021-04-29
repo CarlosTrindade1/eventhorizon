@@ -42,7 +42,7 @@
         </div>
         <div class="question-button">
             <button type="button" class="button-response bg-primary" @click="respond" v-if="showResponse">Responder</button>
-            <button type="button" v-bind:class="{'button-response': true, 'bg-danger': !correct, 'bg-success': correct}" @click="next" v-else>Next</button>
+            <button type="button" v-bind:class="{'button-response': true, 'bg-danger': !correct, 'bg-success': correct}" @click="next" v-else>Continuar</button>
         </div>
     </div>
 </template>
@@ -56,7 +56,8 @@ export default {
     name: 'Question',
     data: function(){
         return {
-            categoryId: 0,
+            chapterId: 0,
+            level: 0,
             questions: [],
             index: 0,
             response: null,
@@ -68,7 +69,7 @@ export default {
     computed: mapState(['userStats', 'user']),
     methods: {
         getQuestions(){
-            const url = `${baseApiUrl}/chapters/${this.categoryId}/questions`
+            const url = `${baseApiUrl}/chapters/${this.chapterId}/questions?level=${this.level}`
             axios.get(url).then(resp => {
                 this.questions = resp.data
             })
@@ -98,6 +99,9 @@ export default {
                 axios.post(url, this.userStats)
                     .then(resp => showSuccess(resp))
                     .catch(showError)
+                
+                axios.post(`${baseApiUrl}/user/${this.user.id}/chapter/${this.chapterId}/questionLevel`, {value: 1})
+                    .then(resp => console.log(resp.data))
 
                 this.$router.push({path: '/learn'})
             }
@@ -109,7 +113,8 @@ export default {
         }
     },
     mounted(){
-        this.categoryId = this.$route.params.id
+        this.chapterId = this.$route.params.id
+        this.level = this.$route.params.level
         this.getQuestions()
     }
 }

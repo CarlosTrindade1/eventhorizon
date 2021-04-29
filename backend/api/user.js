@@ -83,5 +83,21 @@ module.exports = app => {
             .catch(err => resp.status(500).send(err))
     }
 
-    return {save, getStats, updateStats}
+    const getRankingByLevel = async (req, resp) => {
+        const level = req.params.level
+
+        const users = await app.db('users')
+            .select('name', 'weekExp')
+            .where({ranking: level})
+            .orderBy('weekExp', 'desc')
+            .catch(err => resp.status(500).send(err))
+
+        for (let i = 0; i < users.length; i++){
+            users[i] = {index: i, ...users[i]}
+        }
+
+        resp.json(users)
+    }
+
+    return {save, getStats, updateStats, getRankingByLevel}
 }
