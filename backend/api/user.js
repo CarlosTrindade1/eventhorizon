@@ -60,6 +60,17 @@ module.exports = app => {
         }
     }
 
+    const update = (req, resp) => {
+        const user = {...req.body}
+
+        app.db('users')
+                .update(user)
+                .where({id: user.id})
+                // .whereNull('deletedAt')
+                .then(_ => resp.status(204).send())
+                .catch(err => resp.status(500).send(err))
+    }
+
     const getStats = (req, resp) => {
         const userId = req.params.id
 
@@ -99,5 +110,5 @@ module.exports = app => {
         resp.json(users)
     }
 
-    return {save, getStats, updateStats, getRankingByLevel}
+    return {save, getStats, updateStats, getRankingByLevel, update}
 }

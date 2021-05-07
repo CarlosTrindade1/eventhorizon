@@ -8,7 +8,7 @@
             <i class="fa fa-angle-down"></i>
         </div>
         <div class="user-dropdown-content">
-            <a href><i class="fa fa-cog"></i> Configuração</a>
+            <router-link to="/config"><i class="fa fa-cog"></i> Configuração</router-link>
             <a @click.prevent="logout" href><i class="fa fa-sign-out"></i> Sair</a>
         </div>
     </div>

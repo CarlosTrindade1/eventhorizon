@@ -21,7 +21,10 @@ module.exports = app => {
     app.route('/questions')
         .post(app.api.question.save)
 
-    //
+    // Users
+    app.route('/user/update')
+        .post(app.api.user.update)
+
     app.route('/user/:id/stats')
         .get(app.api.user.getStats)
         .post(app.api.user.updateStats)

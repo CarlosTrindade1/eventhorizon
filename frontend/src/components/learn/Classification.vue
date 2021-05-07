@@ -31,19 +31,22 @@
             </div>
         </div>
         <div class="ranking">
-            <div class="ranking-content" v-for="user in users" :key="user.name">
-                <div class="mx-3">
-                    <p style="color: #62B900">{{user.index + 1}}</p>
+            <div class="ranking-content" v-for="userFront in users" :key="userFront.name">
+                <div :class="{'highlight': user.name == userFront.name, 'ranking-content': true}">
+                    <div class="m-2">
+                        <p style="color: #62B900" class="m-0">{{userFront.index + 1}}</p>
+                    </div>
+                    <div class="m-2">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="m-2">
+                        <p class="m-0">{{userFront.name}}</p>
+                    </div>
+                    <div class="m-2">
+                        {{userFront.weekExp}} bósons
+                    </div>
                 </div>
-                <div class="mx-3">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                </div>
-                <div class="mx-3">
-                    <p>{{user.name}}</p>
-                </div>
-                <div class="mx-3">
-                    {{user.weekExp}} bósons
-                </div>
+                
             </div>
         </div>
     </div>
@@ -55,7 +58,7 @@ import { mapState } from 'vuex'
 import { baseApiUrl } from '../../global'
 export default {
     name: 'Classification',
-    computed: mapState(['userStats']),
+    computed: mapState(['user', 'userStats']),
     data: function(){
         return {
             users: []
@@ -115,8 +118,15 @@ export default {
         display: flex;
 
         justify-content: flex-start;
+        align-items: center;
 
         font-size: 1.2rem;
         font-weight: 700;
+
+        border-radius: 5px;
+    }
+
+    .highlight {
+        background-color: #007bff41;
     }
 </style>

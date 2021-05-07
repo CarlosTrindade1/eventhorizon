@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Learn from '../components/learn/Learn'
 import Question from '../components/questions/Question'
 import Home from '../components/home/Home'
+import Config from '../components/config/Config'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,10 @@ const routes = [{
     name: 'questions',
     path: '/chapter/:id/questions',
     component: Question
+}, {
+    name: 'config',
+    path: '/config',
+    component: Config
 }]
 
 const router = new VueRouter({
