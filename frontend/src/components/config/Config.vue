@@ -22,11 +22,11 @@
                 <div class="d-flex justify-content-around">
                     <div style="width: 50%" class="mr-2">
                         <p>Senha atual:</p>
-                        <input type="password" v-model="userUpdated.confirmPassword">
+                        <input type="password" v-model="userUpdated.confirmPassword" placeholder="Digite a senha atual...">
                     </div>
                     <div style="width: 50%" class="ml-2">
                         <p>Nova senha:</p>
-                        <input type="password" v-model="userUpdated.password">
+                        <input type="password" v-model="userUpdated.password" placeholder="Digite a nova senha...">
                     </div>
                 </div>
                 <button class="btn-save-update my-2" @click.prevent ="updateUser">
@@ -58,11 +58,14 @@ export default {
         updateUser(){
             const url = `${baseApiUrl}/user/update`
             axios.post(url, this.userUpdated)
-                .then(showSuccess('Alterações salvas com sucesso!'))
-                .catch(showError)
-            
+                .then(() => {
+                    showSuccess('Alterações salvas com sucesso!')
 
-            this.$router.push({path: '/learn'})
+                    this.$store.commit('updateUser', this.userUpdated)
+
+                    this.$router.push({path: '/learn'})
+                })
+                .catch(showError)
         }
     },
     mounted(){

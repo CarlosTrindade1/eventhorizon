@@ -66,6 +66,7 @@ module.exports = app => {
         if (user.password){
             try {
                 existsOrError(user.confirmPassword, 'Insira a senha atual')
+                existsOrError(user.password, 'Insira uma nova senha')
             } catch(msg) {
                 return resp.status(400).send(msg)
             }

@@ -1,8 +1,11 @@
 <template>
-		<div id="app" :class="{'hide-ranking': !user}">
-			<Menu :hideUserDropdown="!user" :hideMenu="!user"/>
+		<div id="app" :class="{'hide-ranking': !user || this.$route.path == '/ranking'
+		|| this.$route.path == '/adm'}">
+			<Menu :hideUserDropdown="!user || this.$route.path == '/adm'" 
+			:hideMenu="!user || this.$route.path == '/adm'"/>
 			<Content/>
-			<Ranking :hideRanking="!user"/>
+			<Ranking :hideRanking="!user || this.$route.path == '/ranking'
+			|| this.$route.path == '/adm'"/>
 			<Footer/>
 		</div>
 </template>

@@ -31,6 +31,10 @@ export default new Vuex.Store({
             state.userStats.monthExp += value
             state.userStats.yearExp += value
             state.userStats.totalExp += value
+        },
+        updateUser(state, userUpdated){
+            state.user.name = userUpdated.name
+            state.user.email = userUpdated.email
         }
     },
     plugins: [
