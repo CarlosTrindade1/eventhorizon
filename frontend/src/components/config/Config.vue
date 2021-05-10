@@ -19,6 +19,16 @@
                 <input type="text" v-model="userUpdated.name">
                 <p>E-mail:</p>
                 <input type="email" v-model="userUpdated.email">
+                <div class="d-flex justify-content-around">
+                    <div style="width: 50%" class="mr-2">
+                        <p>Senha atual:</p>
+                        <input type="password" v-model="userUpdated.confirmPassword">
+                    </div>
+                    <div style="width: 50%" class="ml-2">
+                        <p>Nova senha:</p>
+                        <input type="password" v-model="userUpdated.password">
+                    </div>
+                </div>
                 <button class="btn-save-update my-2" @click.prevent ="updateUser">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Salvar alterações
@@ -32,7 +42,7 @@
 import Gravatar from 'vue-gravatar'
 import {mapState} from 'vuex'
 import axios from 'axios'
-import {baseApiUrl, showError} from '../../global'
+import {baseApiUrl, showError, showSuccess} from '../../global'
 
 export default {
     name: 'Config',
@@ -48,15 +58,17 @@ export default {
         updateUser(){
             const url = `${baseApiUrl}/user/update`
             axios.post(url, this.userUpdated)
+                .then(showSuccess('Alterações salvas com sucesso!'))
                 .catch(showError)
+            
+
+            this.$router.push({path: '/learn'})
         }
     },
     mounted(){
         this.userUpdated.id = this.user.id
         this.userUpdated.name = this.user.name
         this.userUpdated.email = this.user.email
-
-        console.log(this.userUpdated)
     }
 }
 </script>

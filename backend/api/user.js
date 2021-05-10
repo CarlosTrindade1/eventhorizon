@@ -60,8 +60,29 @@ module.exports = app => {
         }
     }
 
-    const update = (req, resp) => {
+    const update = async (req, resp) => {
         const user = {...req.body}
+
+        if (user.password){
+            try {
+                existsOrError(user.confirmPassword, 'Insira a senha atual')
+            } catch(msg) {
+                return resp.status(400).send(msg)
+            }
+
+            const userDataBase = await app.db('users')
+                .where({id: user.id})
+                .first()
+                .catch(err => resp.status(500).send(err))
+
+            const isMatch = bcrypt.compareSync(user.confirmPassword, userDataBase.password)
+
+            if (!isMatch) return resp.status(401).send('Senha atual inválida')
+
+            user.password = encryptPassword(user.password)
+
+            delete user.confirmPassword
+        }
 
         app.db('users')
                 .update(user)
