@@ -26,7 +26,7 @@ module.exports = app => {
         if (req.params.id) user.id = req.params.id
 
         // if (!req.originalUrl.startsWith('/users')) user.admin = false
-        if (!req.user || !req.user.admin) user.admin = false
+        if (!user || !user.admin) user.admin = false
 
         try {
             existsOrError(user.name, 'Nome não informado')
@@ -51,7 +51,6 @@ module.exports = app => {
             app.db('users')
                 .update(user)
                 .where({id: user.id})
-                // .whereNull('deletedAt')
                 .then(_ => resp.status(204).send())
                 .catch(err => resp.status(500).send(err))
         } else {
@@ -90,7 +89,6 @@ module.exports = app => {
         app.db('users')
                 .update(user)
                 .where({id: user.id})
-                // .whereNull('deletedAt')
                 .then(_ => resp.status(204).send())
                 .catch(err => resp.status(500).send(err))
     }
@@ -102,10 +100,24 @@ module.exports = app => {
             .catch(err => resp.status(500).send(err))
     }
 
-    const remove = (req, resp) => {
+    const remove = async (req, resp) => {
         const id = req.params.id
 
-        //
+        const userFromDB = await app.db('users')
+            .where({id: id})
+            .first()
+
+        try {
+            existsOrError(userFromDB, 'Usuário inexistente!')
+        } catch(msg){
+            return resp.status(400).send(msg)
+        }
+
+        app.db('users')
+            .where({id: id})
+            .del()
+            .then(_ => resp.status(204).send())
+            .catch(err => resp.status(500).send(err))
     }
 
     const getStats = (req, resp) => {
