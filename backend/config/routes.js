@@ -6,6 +6,11 @@ module.exports = app => {
     // Modules
     app.route('/modules')
         .get(app.api.module.getModules)
+        .post(app.api.module.save)
+
+    app.route('/modules/:id')
+        .put(app.api.module.save)
+        .delete(app.api.module.remove)
 
     app.route('/modulesWithChapters')
         .get(app.api.module.getModulesWithChapters)

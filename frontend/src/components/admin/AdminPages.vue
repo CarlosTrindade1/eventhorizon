@@ -10,7 +10,7 @@
                         <UserAdmin/>
                     </b-tab>
                     <b-tab title="Módulos">
-                        Hello world!
+                        <ModuleAdmin/>
                     </b-tab>
                     <b-tab title="Capítulos">
                         Hello world!
@@ -26,10 +26,11 @@
 
 <script>
 import UserAdmin from './UserAdmin'
+import ModuleAdmin from './ModuleAdmin'
 
 export default {
     name: 'Dashboard',
-    components: {UserAdmin}
+    components: {UserAdmin, ModuleAdmin}
 }
 </script>
 
