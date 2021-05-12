@@ -6,7 +6,9 @@ import Question from '../components/questions/Question'
 import Home from '../components/home/Home'
 import Config from '../components/config/Config'
 import Ranking from '../components/ranking/Ranking'
-import Adm from '../components/adm/Adm'
+import Adm from '../components/admin/Adm'
+import Dashboard from '../components/admin/Dashboard'
+import AdminPages from '../components/admin/AdminPages'
 
 Vue.use(VueRouter)
 
@@ -35,6 +37,14 @@ const routes = [{
     name: 'adm',
     path: '/adm',
     component: Adm
+}, {
+    name: 'adm-dashboard',
+    path: '/adm/dashboard',
+    component: Dashboard
+}, {
+    name: 'adm-admin-pages',
+    path: '/adm/admin-pages',
+    component: AdminPages
 }]
 
 const router = new VueRouter({

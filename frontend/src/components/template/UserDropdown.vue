@@ -9,6 +9,7 @@
         </div>
         <div class="user-dropdown-content">
             <router-link to="/config"><i class="fa fa-cog"></i> Configuração</router-link>
+            <router-link v-if="user.admin" to="/adm/dashboard"><i class="fa fa-bar-chart" aria-hidden="true"></i> Administração</router-link>
             <a @click.prevent="logout" href><i class="fa fa-sign-out"></i> Sair</a>
         </div>
     </div>

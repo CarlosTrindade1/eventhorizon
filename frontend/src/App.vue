@@ -1,11 +1,14 @@
 <template>
-		<div id="app" :class="{'hide-ranking': !user || this.$route.path == '/ranking'
-		|| this.$route.path == '/adm'}">
-			<Menu :hideUserDropdown="!user || this.$route.path == '/adm'" 
-			:hideMenu="!user || this.$route.path == '/adm'"/>
+		<div id="app" :class="{'hide-ranking': !user || 
+			this.$route.path == '/ranking', 
+			'show-menu-admin': this.$route.path == '/adm/dashboard' ||
+			this.$route.path == '/adm/admin-pages'}">
+			<Menu :hideUserDropdown="!user" 
+			:hideMenu="!user || this.$route.path == '/adm/dashboard'"/>
 			<Content/>
-			<Ranking :hideRanking="!user || this.$route.path == '/ranking'
-			|| this.$route.path == '/adm'"/>
+			<Ranking :hideRanking="!user || this.$route.path != '/learn'"/>
+			<MenuAdmin v-if="this.$route.path == '/adm/dashboard' || 
+			this.$route.path == '/adm/admin-pages'"/>
 			<Footer/>
 		</div>
 </template>
@@ -16,13 +19,14 @@ import Menu from './components/template/Menu'
 import Footer from './components/template/Footer'
 import Content from './components/template/Content'
 import Ranking from './components/template/Ranking'
+import MenuAdmin from './components/admin/MenuAdmin'
 
 import axios from 'axios'
 import {baseApiUrl, userKey} from './global'
 
 export default {
 	name: 'App',
-	components: {Menu, Footer, Content, Ranking},
+	components: {Menu, Footer, Content, Ranking, MenuAdmin},
 	computed: mapState(['user']),
 	data: function(){
 		return {
@@ -106,4 +110,13 @@ export default {
 			'content content'
 			'footer footer';
     }
+
+	#app.show-menu-admin {
+		grid-template-columns: 20% 80%;
+
+		grid-template-areas: 
+			'menu menu'
+			'aside content'
+			'footer footer';
+	}
 </style>

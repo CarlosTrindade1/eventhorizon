@@ -93,6 +93,13 @@ module.exports = app => {
                 .catch(err => resp.status(500).send(err))
     }
 
+    const get = (req, resp) => {
+        app.db('users')
+            .select('id', 'name', 'email', 'admin')
+            .then(users => resp.json(users))
+            .catch(err => resp.status(500).send(err))
+    }
+
     const getStats = (req, resp) => {
         const userId = req.params.id
 
@@ -132,5 +139,5 @@ module.exports = app => {
         resp.json(users)
     }
 
-    return {save, getStats, updateStats, getRankingByLevel, update}
+    return {save, getStats, updateStats, getRankingByLevel, update, get}
 }

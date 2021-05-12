@@ -15,8 +15,8 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import {baseApiUrl} from '../../global'
+import axios from 'axios'
+import {baseApiUrl, showError} from '../../global'
 
 export default {
     name: 'Adm',
@@ -26,9 +26,20 @@ export default {
         }
     },
     methods: {
-        singin(){
-            // const url = `${baseApiUrl}/signin`
-
+        signin(){
+            const url = `${baseApiUrl}/signin`
+            axios.post(url, this.user).then(resp => {
+                if (resp.data.admin){
+                    this.$router.push({path: '/adm/dashboard'})
+                } else {
+                    showError('Este usuário não é administrador')
+                }
+            })
+            // if (this.user.admin){
+            //     this.$route.push({path: '/learn'})
+            // } else {
+            //     showError('Este usuário não é administrador')
+            // }
         }
     }
 }
