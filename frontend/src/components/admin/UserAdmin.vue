@@ -1,7 +1,7 @@
 <template>
     <div class="user-admin">
         <b-form>
-            <input type="hidden" id="user-id">
+            <input type="hidden" id="user-id" v-model="user.id">
             <b-row>
                 <b-col md="6" sm="12">
                     <b-form-group label="Nome:" labe-for="user-name">
@@ -40,7 +40,7 @@
             <b-row>
                 <b-col xs="12">
                     <b-button variant="primary" v-if="mode === 'save'" @click="save">Salvar</b-button>
-                    <b-button variant="danger" v-if="mode === 'remove'">Excluir</b-button>
+                    <b-button variant="danger" v-if="mode === 'remove'" @click="remove">Excluir</b-button>
                     <b-button class="ml-2" @click="reset">Cancelar</b-button>
                 </b-col>
             </b-row>
@@ -93,7 +93,17 @@ export default {
         save() {
             const method = this.user.id ? 'put' : 'post'
             const id = this.user.id ? `/${this.user.id}` : ''
+            console.log(this.user)
             axios[method](`${baseApiUrl}/users${id}`, this.user)
+                .then(() => {
+                    this.$toasted.global.defaultSuccess()
+                    this.reset()
+                })
+                .catch(showError)
+        },
+        remove(){
+            const id = this.user.id
+            axios.delete(`${baseApiUrl}/users/${id}`)
                 .then(() => {
                     this.$toasted.global.defaultSuccess()
                     this.reset()

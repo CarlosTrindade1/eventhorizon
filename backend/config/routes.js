@@ -28,6 +28,7 @@ module.exports = app => {
 
     app.route('/users/:id')
         .put(app.api.user.save)
+        // .delete(app.api.user.remove)
 
     app.route('/user/update')
         .post(app.api.user.update)

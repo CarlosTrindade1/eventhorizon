@@ -19,11 +19,13 @@ module.exports = app => {
             ranking: 0
         }
 
-        const user = {...req.body, ...userStats}
+        let user = {...req.body}
+
+        user = {...user, ...userStats}
         
         if (req.params.id) user.id = req.params.id
 
-        if (!req.originalUrl.startsWith('/users')) user.admin = false
+        // if (!req.originalUrl.startsWith('/users')) user.admin = false
         if (!req.user || !req.user.admin) user.admin = false
 
         try {
@@ -49,7 +51,7 @@ module.exports = app => {
             app.db('users')
                 .update(user)
                 .where({id: user.id})
-                .whereNull('deletedAt')
+                // .whereNull('deletedAt')
                 .then(_ => resp.status(204).send())
                 .catch(err => resp.status(500).send(err))
         } else {
@@ -100,6 +102,12 @@ module.exports = app => {
             .catch(err => resp.status(500).send(err))
     }
 
+    const remove = (req, resp) => {
+        const id = req.params.id
+
+        //
+    }
+
     const getStats = (req, resp) => {
         const userId = req.params.id
 
@@ -139,5 +147,5 @@ module.exports = app => {
         resp.json(users)
     }
 
-    return {save, getStats, updateStats, getRankingByLevel, update, get}
+    return {save, getStats, updateStats, getRankingByLevel, update, get, remove}
 }
