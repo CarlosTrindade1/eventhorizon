@@ -1,9 +1,9 @@
 module.exports = app => {
     
-    const getChapters = async (req, resp) => {
-        const chapters = await app.db('chapters')
-
-        resp.json(chapters)
+    const get = (req, resp) => {
+        app.db('chapters')
+            .then(chapters => resp.json(chapters))
+            .catch(err => resp.status(500).send(err))
     }
 
     const createUserChapter = async (req, resp) => {
@@ -44,5 +44,5 @@ module.exports = app => {
 
     }
 
-    return {getChapters, createUserChapter, getQuestionLevelByChapter, setQuestionLevelByChapter}
+    return {get, createUserChapter, getQuestionLevelByChapter, setQuestionLevelByChapter}
 }

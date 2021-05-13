@@ -17,7 +17,7 @@ module.exports = app => {
 
     // Chapters
     app.route('/chapters')
-        .get(app.api.chapter.getChapters)
+        .get(app.api.chapter.get)
 
     app.route('/chapters/:id/questions')
         .get(app.api.question.getQuestionsByChapter)
