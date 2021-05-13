@@ -18,6 +18,11 @@ module.exports = app => {
     // Chapters
     app.route('/chapters')
         .get(app.api.chapter.get)
+        .post(app.api.chapter.save)
+
+    app.route('/chapters/:id')
+        .put(app.api.chapter.save)
+        .delete(app.api.chapter.remove)
 
     app.route('/chapters/:id/questions')
         .get(app.api.question.getQuestionsByChapter)
