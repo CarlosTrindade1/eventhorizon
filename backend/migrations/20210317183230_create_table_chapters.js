@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.integer('moduleId').references('id')
             .inTable('modules')
         table.string('name').notNull()
-        table.string('description').notNull()
+        table.string('description', 1000).notNull()
         table.string('imageUrl', 1000).notNull()
     })
 };

@@ -1,7 +1,10 @@
 <template>
     <div class="dashboard">
         <div class="page-title">
-            <h1>Título</h1>
+            <h1>
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                Administração
+            </h1>
         </div>
         <div class="admin-pages-tabs">
             <b-card no-body>
@@ -13,7 +16,7 @@
                         <ChapterAdmin/>
                     </b-tab>
                     <b-tab title="Questões">
-                        Hello world!
+                        <QuestionAdmin/>
                     </b-tab>
                     <b-tab title="Usuários">
                         <UserAdmin/>
@@ -28,10 +31,11 @@
 import UserAdmin from './UserAdmin'
 import ModuleAdmin from './ModuleAdmin'
 import ChapterAdmin from './ChapterAdmin'
+import QuestionAdmin from './QuestionAdmin'
 
 export default {
     name: 'Dashboard',
-    components: {UserAdmin, ModuleAdmin, ChapterAdmin}
+    components: {UserAdmin, ModuleAdmin, ChapterAdmin, QuestionAdmin}
 }
 </script>
 

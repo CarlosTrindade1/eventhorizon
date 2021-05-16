@@ -36,8 +36,13 @@ module.exports = app => {
             .where({id: id})
             .first()
 
+        const chaptersFromDB = await app.db('chapters')
+            .where({moduleId: id})
+            .first()
+
         try {
             existsOrError(moduleFromDB, 'Módulo não encontrado!')
+            notExistsOrError(chaptersFromDB, 'Este módulo possui capítulos')
         } catch(msg){
             return resp.status(400).send(msg)
         }

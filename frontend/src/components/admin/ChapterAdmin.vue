@@ -7,21 +7,20 @@
                     <b-form-group label="Nome:" label-for="chapter-name">
                         <b-form-input id="chapter-name" type="text"
                         v-model="chapter.name" required
+                        :readonly="mode == 'remove'"
                         placeholder="Informe o nome do capítulo..."/>
                     </b-form-group>
                 </b-col>
             </b-row>
+            <b-form-group label="Descrição:" label-for="chapter-description"
+            v-if="mode == 'save'">
+                <VueEditor v-model="chapter.description" required
+                placeholder="Informe a descrição do capítulo..."/>
+            </b-form-group>
             <b-row>
                 <b-col>
-                    <b-form-group label="Descrição:" label-for="chapter-description">
-                        <VueEditor v-model="chapter.description" required
-                        placeholder="Informe a descrição do capítulo..."/>
-                    </b-form-group>
-                </b-col>
-            </b-row>
-            <b-row>
-                <b-col>
-                    <b-form-group label="Imagem (URL):" label-for="chapter-image">
+                    <b-form-group label="Imagem (URL):" label-for="chapter-image"
+                    v-if="mode == 'save'">
                         <b-form-input id="chapter-image" type="text"
                         v-model="chapter.imageUrl" required
                         placeholder="Informe a URL da imagem..."/>

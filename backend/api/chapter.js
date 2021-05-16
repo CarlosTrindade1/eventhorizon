@@ -4,7 +4,7 @@ module.exports = app => {
     const save = (req, resp) => {
         const chapter = {...req.body}
 
-        if (req.params.id) this.chapter.id = req.params.id
+        if (req.params.id) chapter.id = req.params.id
 
         try {
             existsOrError(chapter.name, 'Informe o nome do capítulo')
@@ -36,8 +36,13 @@ module.exports = app => {
             .where({id: id})
             .first()
 
+        const questionsFromDB = await app.db('questions')
+            .where({chapterId: id})
+            .first()
+
         try {
             existsOrError(chapterFromDB, 'Capítulo não encontrado!')
+            notExistsOrError(questionsFromDB, 'Este capítulo possui questões')
         } catch(msg){
             return resp.status(400).send(msg)
         }

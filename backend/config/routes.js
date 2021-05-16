@@ -29,7 +29,13 @@ module.exports = app => {
 
     // Questions
     app.route('/questions')
+        .get(app.api.question.get)
         .post(app.api.question.save)
+
+    app.route('/questions/:id')
+        .put(app.api.question.save)
+        .delete(app.api.question.remove)
+        .get(app.api.question.getById)
 
     // Users
     app.route('/users')

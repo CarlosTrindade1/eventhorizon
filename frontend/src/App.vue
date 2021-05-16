@@ -4,7 +4,7 @@
 			'show-menu-admin': this.$route.path == '/adm/dashboard' ||
 			this.$route.path == '/adm/admin-pages'}">
 			<Menu :hideUserDropdown="!user" 
-			:hideMenu="!user || this.$route.path == '/adm/dashboard'"/>
+			:hideMenu="!user"/>
 			<Content/>
 			<Ranking :hideRanking="!user || this.$route.path != '/learn'"/>
 			<MenuAdmin v-if="this.$route.path == '/adm/dashboard' || 
