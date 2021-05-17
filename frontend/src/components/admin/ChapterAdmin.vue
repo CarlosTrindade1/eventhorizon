@@ -14,7 +14,7 @@
             </b-row>
             <b-form-group label="Descrição:" label-for="chapter-description"
             v-if="mode == 'save'">
-                <VueEditor v-model="chapter.description" required
+                <VueEditor v-model="chapter.description"
                 placeholder="Informe a descrição do capítulo..."/>
             </b-form-group>
             <b-row>

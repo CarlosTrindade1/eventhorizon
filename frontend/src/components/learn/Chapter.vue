@@ -9,7 +9,7 @@
             class="mb-2">
            
             
-            <p>{{chapter.description}}</p>
+            <p v-html="chapter.description"></p>
             <div class="chapter-button">
                 <b-button href="https://www.youtube.com/watch?v=3VLPyOLC1nc&list=PLPz6TqSYQzDYuQ3WqF5plmN0rycwcYULm&index=1" target="_blank" variant="primary">Conteúdo</b-button>
                 <b-button @click="question" variant="success">Começar</b-button>

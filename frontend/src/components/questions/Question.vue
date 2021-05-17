@@ -7,7 +7,7 @@
             <div>
                 <h1>{{questions[index].name}}</h1>
 
-                <p>{{questions[index].content}}</p>
+                <p v-html="questions[index].content"></p>
             </div>
             <div class="form-check" v-if="questions[index].choiceA">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" @click="response = 'A'">
