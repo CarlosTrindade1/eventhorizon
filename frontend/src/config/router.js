@@ -10,6 +10,8 @@ import Adm from '../components/admin/Adm'
 import Dashboard from '../components/admin/Dashboard'
 import AdminPages from '../components/admin/AdminPages'
 
+import {userKey} from '../global'
+
 Vue.use(VueRouter)
 
 const routes = [{
@@ -40,16 +42,35 @@ const routes = [{
 }, {
     name: 'adm-dashboard',
     path: '/adm/dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: {requiresAdmin: true}
 }, {
     name: 'adm-admin-pages',
     path: '/adm/admin-pages',
-    component: AdminPages
+    component: AdminPages,
+    meta: {requiresAdmin: true}
 }]
 
 const router = new VueRouter({
     mode: 'history',
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    const json = localStorage.getItem(userKey)
+    const user = JSON.parse(json)
+
+    if (to.matched.some(record => record.meta.requiresAdmin)){
+        user.admin ? next() : next({path: '/learn'})
+    } else if (to.name === 'home'){
+        if (user){
+            next({path: '/learn'})
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 })
 
 export default router
