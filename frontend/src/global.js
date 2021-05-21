@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export const baseApiUrl = 'http://localhost:3000'
+export const baseApiUrl = 'http://192.168.0.101:3000'
 
 export const userKey = '__eventhorizon_user'
 

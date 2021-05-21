@@ -95,4 +95,21 @@ export default {
         color: #000;
         padding: 10px;
     }
+
+    /* Responsividade */
+
+    @media (max-width: 415px){
+        .user-dropdown .user-button {
+            font-size: 0.6rem;
+        }
+
+        .user-dropdown-img > img {
+            max-height: 20px;
+            border-radius: 5px;
+        }
+
+        .user-button {
+            padding: 0px;
+        }
+    }
 </style>

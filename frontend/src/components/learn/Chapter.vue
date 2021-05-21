@@ -6,7 +6,7 @@
             img-top
             tag="article"
             style="max-width: 20rem;"
-            class="mb-2 chapter">
+            class="mb-5 chapter">
            
             
             <p v-html="chapter.description"></p>
@@ -65,8 +65,7 @@ export default {
 
 <style>
     .chapter {
-        margin: 0px 10px;
-        margin-bottom: 20px;
+        /* margin-bottom: 100px; */
 
         box-shadow: 0 10px 10px rgb(126 126 126 / 30%);
         transition: all .3s ease;

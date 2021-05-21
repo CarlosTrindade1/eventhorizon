@@ -1,8 +1,20 @@
 <template>
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
-        <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2 size"></i> APRENDER</router-link>
-        <router-link to="/ranking" id="ranking" class="link" style="color: #218838" v-if="!hideMenu"><i class="fa fa-newspaper-o mr-2 size"></i> RANKING</router-link>
+        <router-link to="/learn" class="link" v-if="!hideMenu">
+            <i class="fa fa-leanpub mr-2 size"></i> 
+            APRENDER
+        </router-link>
+        <router-link to="/learn" class="link-icon" v-if="!hideMenu">
+            <i class="fa fa-leanpub mr-2 size"></i>
+        </router-link>
+        <router-link to="/ranking" id="ranking" class="link" style="color: #218838" v-if="!hideMenu">
+            <i class="fa fa-newspaper-o mr-2 size"></i> 
+            RANKING
+        </router-link>
+        <router-link to="/ranking" id="ranking" class="link-icon" style="color: #218838" v-if="!hideMenu">
+            <i class="fa fa-newspaper-o mr-2 size"></i> 
+        </router-link>
         <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>
@@ -50,11 +62,26 @@ export default {
         font-size: 1.8rem;
     }
 
+    .menu .link-icon {
+        display: none;
+        text-decoration: none;
+        color: #007BFF;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .menu .link-icon:hover{
+        text-decoration: none;
+        color: #0069D9;
+    }
+
+    /* Responsividade */
+
     @media (max-width: 690px){
         .menu > img {
-            height: 75%;
+            height: 60%;
             margin-left: 20px;
-            width: 120px;
+            width: 100px;
+            margin: 0;
         }
     }
 
@@ -70,6 +97,16 @@ export default {
 
     @media (min-width: 860px){
         #ranking {
+            display: none;
+        }
+    }
+
+    @media (max-width: 415px){
+        .menu .link-icon {
+            display: inline-block;
+        }
+
+        .menu .link {
             display: none;
         }
     }
