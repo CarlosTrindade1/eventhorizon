@@ -129,4 +129,24 @@ export default {
         margin: 0;
     }
 
+    @media (max-width: 520px){
+        .auth-container {
+            width: 450px;
+        }
+    }
+    @media (max-width: 420px){
+        .auth-container {
+            width: 400px;
+        }
+    }
+    @media (max-width: 380px){
+        .auth-container {
+            width: 350px;
+        }
+    }
+    @media (max-width: 320px){
+        .auth-container {
+            width: 260px;
+        }
+    }
 </style>

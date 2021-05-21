@@ -2,9 +2,11 @@
     <div class="module">
         <hr>
         <h1>{{module.name}}</h1>
-        <div class="module-grid">
-            <div v-for="chapter in chapters" :key="chapter.id">
-                <Chapter :chapter="chapter"/>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-sm-12" v-for="chapter in chapters" :key="chapter.id">
+                    <Chapter :chapter="chapter"/>
+                </div>
             </div>
         </div>
         <hr>

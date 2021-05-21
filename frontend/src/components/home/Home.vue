@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <div><img src="../../assets/unnamed.png" alt="Buraco Negro"></div>
+        <div><img src="../../assets/unnamed.png" class="teste" alt="Buraco Negro"></div>
         <Auth/>
     </div>
 </template>
@@ -25,5 +25,11 @@ export default {
         align-items: center;
 
         background-color: #0D6EFD;
+    }
+
+    @media (max-width: 1030px){
+        .teste {
+            display: none;
+        }
     }
 </style>

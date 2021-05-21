@@ -1,12 +1,12 @@
 <template>
-    <div class="chapter">
+    <div>
         <b-card :title="chapter.name" 
             img-src="https://conteudos.xpi.com.br/wp-content/uploads/2020/10/fundo-geometrico-de-tecnologia_29971-339.jpg"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
-            class="mb-2">
+            class="mb-2 chapter">
            
             
             <p v-html="chapter.description"></p>

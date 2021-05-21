@@ -119,4 +119,13 @@ export default {
 			'aside content'
 			'footer footer';
 	}
+
+	@media (max-width: 860px){
+        #app {
+			grid-template-areas: 
+				'menu menu'
+				'content content'
+				'footer footer';
+		}
+    }
 </style>

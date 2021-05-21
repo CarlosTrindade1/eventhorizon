@@ -2,7 +2,7 @@
     <header class="menu">
         <img src="../../assets/logo-nome_pretoebranco.png" alt="Logo">
         <router-link to="/learn" class="link" v-if="!hideMenu"><i class="fa fa-leanpub mr-2 size"></i> APRENDER</router-link>
-        <router-link to="/ranking" class="link" style="color: #218838" v-if="!hideMenu"><i class="fa fa-newspaper-o mr-2 size"></i> RANKING</router-link>
+        <router-link to="/ranking" id="ranking" class="link" style="color: #218838" v-if="!hideMenu"><i class="fa fa-newspaper-o mr-2 size"></i> RANKING</router-link>
         <UserDropdown v-if="!hideUserDropdown"/>
     </header>
 </template>
@@ -48,5 +48,29 @@ export default {
 
     .size {
         font-size: 1.8rem;
+    }
+
+    @media (max-width: 690px){
+        .menu > img {
+            height: 75%;
+            margin-left: 20px;
+            width: 120px;
+        }
+    }
+
+    @media (max-width: 690px){
+        .menu .link {
+            font-size: 0.8rem;
+        }
+
+        .size {
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 860px){
+        #ranking {
+            display: none;
+        }
     }
 </style>

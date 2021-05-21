@@ -23,4 +23,10 @@ export default {
         grid-area: aside;
         padding: 20px;
     }
+
+    @media (max-width: 860px){
+        .ranking {
+            display: none;
+        }
+    }
 </style>
