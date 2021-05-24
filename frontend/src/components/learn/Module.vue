@@ -42,9 +42,7 @@ export default {
         margin-bottom: 30px;
     }
 
-    .module-grid {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 1fr;
+    .module {
+        padding: 20px;
     }
 </style>

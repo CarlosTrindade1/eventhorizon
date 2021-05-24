@@ -65,4 +65,8 @@ module.exports = app => {
     app.route('/users/ranking/:level')
         .get(app.api.user.getRankingByLevel)
 
+    // Stats
+    app.route('/stats')
+        .get(app.api.stat.get)
+
 }

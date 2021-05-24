@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div class="teste">
         <div class="page-title">
             <h1>
                 <i class="fa fa-cog" aria-hidden="true"></i>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style>
-    .dashboard {
+    .teste {
         padding: 20px;
     }
 </style>
