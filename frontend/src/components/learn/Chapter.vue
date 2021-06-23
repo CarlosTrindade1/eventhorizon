@@ -10,15 +10,17 @@
            
             
             <p v-html="chapter.description"></p>
-            <div class="chapter-button">
+            <div class="chapter-button" v-if="questionLevel != 5">
                 <b-button href="https://www.youtube.com/watch?v=3VLPyOLC1nc&list=PLPz6TqSYQzDYuQ3WqF5plmN0rycwcYULm&index=1" target="_blank" variant="primary">Conteúdo</b-button>
                 <b-button @click="question" variant="success">Começar</b-button>
             </div>
              <div class="progress mt-5 mb-2">
-                <div class="progress-bar bg-primary" role="progressbar" v-bind:style="{width: questionLevel*20+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div v-bind:class="{'progress-bar': true, 'bg-primary': questionLevel < 5, 'bg-warning': questionLevel == 5}"
+                role="progressbar" v-bind:style="{width: questionLevel*20+'%'}" 
+                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="d-flex flex-row-reverse">
-                <div class="question-level">{{questionLevel}}</div>
+                <div v-bind:class="{'question-level': true, 'progress-success': questionLevel == 5}">{{questionLevel}}</div>
             </div>
         </b-card>
     </div>
@@ -95,5 +97,10 @@ export default {
         padding: 5px 15px;
 
         background-color: #007BFF;
+    }
+
+    .progress-success {
+        background-color: #FFC100;
+        border-color: #FFC100;
     }
 </style>
