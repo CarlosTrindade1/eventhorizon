@@ -1,9 +1,9 @@
 <template>
     <div class="daily-target">
-        <div>
+        <div class="header-daily-target">
+            <h1>Progresso em XP</h1>
             <Counter/>
         </div>
-        <h1>Progresso em XP</h1>
         <div class="daily-target-flex">
             <div v-if="this.userStats.valueDailyTarget >= 50" class="daily-target-icon-gold mr-3">
                 <i class="fa fa-trophy"></i>
@@ -73,5 +73,10 @@ export default {
     .daily-target-icon-gold {
         font-size: 3.5rem;
         color: rgb(247, 203, 10);
+    }
+
+    .header-daily-target {
+        display: flex;
+        justify-content: space-between;
     }
 </style>

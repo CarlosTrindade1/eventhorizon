@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="counter">
         <section class="flex text-6xl justify-center content-center">
             <div class="days mr-2 relative">
-                {{displayHours}}:
-                {{displayMinutes}}:
-                {{displaySeconds}}
+                {{displayHours}}h
+                {{displayMinutes}}m
+                {{displaySeconds}}s
             </div>
         </section>
     </div>
@@ -21,6 +21,7 @@ export default {
             displaySeconds: 0
         }
     },
+    props: ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'],
     computed: {
         _seconds: () => 1000,
         _minutes(){
@@ -31,14 +32,25 @@ export default {
         },
         _days(){
             return this._hours * 24
+        },
+        end(){
+            return new Date(
+                this.year,
+                this.month,
+                this.date,
+                this.hour,
+                this.minute,
+                this.second,
+                this.millisecond
+            )
         }
     },
     methods: {
         showRemaining(){
             const timer = setInterval(() => {
                 const now = new Date()
-                const end = new Date(2021, 5, 29, 10, 10, 10, 10)
-                const distance = end.getTime() - now.getTime()
+                // const end = new Date(2021, 5, 29, 0, 0, 0, 0)
+                const distance = this.end.getTime() - now.getTime()
 
                 if (distance < 0){
                     clearInterval(timer)
@@ -65,5 +77,8 @@ export default {
 </script>
 
 <style>
-
+    .counter {
+        font-weight: 700;
+        color: #919191;
+    }
 </style>
