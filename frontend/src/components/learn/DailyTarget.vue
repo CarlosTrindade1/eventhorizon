@@ -1,5 +1,8 @@
 <template>
     <div class="daily-target">
+        <div>
+            <Counter/>
+        </div>
         <h1>Progresso em XP</h1>
         <div class="daily-target-flex">
             <div v-if="this.userStats.valueDailyTarget >= 50" class="daily-target-icon-gold mr-3">
@@ -31,8 +34,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import Counter from '../counters/Counter.vue'
+
 export default {
     name: 'DailyTarget',
+    components: {Counter},
     computed: mapState(['userStats'])
 }
 </script>
