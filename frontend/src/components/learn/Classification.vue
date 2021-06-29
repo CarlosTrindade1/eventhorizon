@@ -1,12 +1,23 @@
 <template>
     <div class="classification">
         <div class="division">
-            <h3 v-if="userStats.ranking == 0">Unranked</h3>
-            <h3 v-if="userStats.ranking == 1">Divisão Aristotélica</h3>
-            <h3 v-if="userStats.ranking == 2">Divisão Copernicana</h3>
-            <h3 v-if="userStats.ranking == 3">Divisão Keplericana</h3>
-            <h3 v-if="userStats.ranking == 4">Divisão Galiléica</h3>
-            <h3 v-if="userStats.ranking == 5">Divisão Newtoniana</h3>
+            <div class="header-daily-target">
+                <h3 v-if="userStats.ranking == 0">Unranked</h3>
+                <h3 v-if="userStats.ranking == 1">Divisão Aristotélica</h3>
+                <h3 v-if="userStats.ranking == 2">Divisão Copernicana</h3>
+                <h3 v-if="userStats.ranking == 3">Divisão Keplericana</h3>
+                <h3 v-if="userStats.ranking == 4">Divisão Galiléica</h3>
+                <h3 v-if="userStats.ranking == 5">Divisão Newtoniana</h3>
+                <Counter
+                :year="2021"
+                :month="6"
+                :date="4"
+                :hour="0"
+                :minute="0"
+                :second="0"
+                :millisecond="0"
+                />
+            </div>
             <div class="division-icons">
                 <div>
                     <i v-if="userStats.ranking >= 1" class="fa fa-shield" style="color: #AAC1D4" aria-hidden="true"></i>
@@ -56,8 +67,11 @@
 import axios from 'axios'
 import { mapState } from 'vuex'
 import { baseApiUrl } from '../../global'
+import Counter from '../counters/Counter.vue'
+
 export default {
     name: 'Classification',
+    components: {Counter},
     computed: mapState(['user', 'userStats']),
     data: function(){
         return {
@@ -69,9 +83,6 @@ export default {
             const url = `${baseApiUrl}/users/ranking/${this.userStats.ranking}`
             axios.get(url).then(resp => this.users = resp.data)
         }
-    },
-    watch: {
-        
     },
     beforeUpdate(){
         this.getUsersByRanking()

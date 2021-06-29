@@ -2,6 +2,7 @@
     <div class="counter">
         <section class="flex text-6xl justify-center content-center">
             <div class="days mr-2 relative">
+                <span v-if="displayDays > 0">{{displayDays}}d</span>
                 {{displayHours}}h
                 {{displayMinutes}}m
                 {{displaySeconds}}s
@@ -78,7 +79,7 @@ export default {
 
 <style>
     .counter {
-        font-weight: 700;
-        color: #919191;
+        font-weight: 900;
+        color: #0190CD;
     }
 </style>

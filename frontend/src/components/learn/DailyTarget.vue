@@ -2,7 +2,14 @@
     <div class="daily-target">
         <div class="header-daily-target">
             <h1>Progresso em XP</h1>
-            <Counter/>
+            <Counter
+                :year="2021"
+                :month="5"
+                :date="29"
+                :hour="0"
+                :minute="0"
+                :second="0"
+                :millisecond="0"/>     
         </div>
         <div class="daily-target-flex">
             <div v-if="this.userStats.valueDailyTarget >= 50" class="daily-target-icon-gold mr-3">
@@ -79,4 +86,5 @@ export default {
         display: flex;
         justify-content: space-between;
     }
+
 </style>
