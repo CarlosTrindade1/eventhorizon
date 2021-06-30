@@ -5,7 +5,7 @@
             <Counter
                 :year="2021"
                 :month="5"
-                :date="29"
+                :date="31"
                 :hour="0"
                 :minute="0"
                 :second="0"

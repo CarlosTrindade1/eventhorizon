@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="ranking">
-            <div class="ranking-content" v-for="userFront in users" :key="userFront.name">
+            <div class="" v-for="userFront in users" :key="userFront.name">
                 <div :class="{'highlight': user.name == userFront.name, 'ranking-content': true}">
                     <div class="m-2">
                         <p style="color: #62B900" class="m-0">{{userFront.index + 1}}</p>
@@ -54,10 +54,14 @@
                         <p class="m-0">{{userFront.name}}</p>
                     </div>
                     <div class="m-2">
-                        {{userFront.weekExp}} bósons
+                        {{userFront.weekExp}} <i>bósons</i>
                     </div>
                 </div>
-                
+                <div v-show="userFront == users[4]" class="promote-bar">
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    <p class="mb-0 mx-2">ZONA DE PROMOÇÃO</p>
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -140,4 +144,20 @@ export default {
     .highlight {
         background-color: #007bff41;
     }
+
+    .promote-bar {
+        vertical-align: center;
+        color: #62B900;
+        font-weight: 900;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+
+        padding: 10px;
+
+        background-color: #ffffff;
+    }
+
 </style>
