@@ -8,7 +8,7 @@
         <router-link to="/learn" class="link-icon" v-if="!hideMenu">
             <i class="fa fa-leanpub mr-2 size"></i>
         </router-link>
-        <router-link to="/ranking" id="ranking" class="link" style="color: #218838" v-if="!hideMenu">
+        <router-link to="/" id="ranking" class="link" style="color: #218838" v-if="!hideMenu">
             <i class="fa fa-newspaper-o mr-2 size"></i> 
             RANKING
         </router-link>

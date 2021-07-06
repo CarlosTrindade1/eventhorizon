@@ -11,7 +11,7 @@
                 <Counter
                 :year="2021"
                 :month="6"
-                :date="4"
+                :date="11"
                 :hour="0"
                 :minute="0"
                 :second="0"

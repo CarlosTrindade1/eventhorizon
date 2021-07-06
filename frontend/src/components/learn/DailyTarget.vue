@@ -4,8 +4,8 @@
             <h1>Progresso em XP</h1>
             <Counter
                 :year="2021"
-                :month="5"
-                :date="31"
+                :month="6"
+                :date="6"
                 :hour="0"
                 :minute="0"
                 :second="0"
